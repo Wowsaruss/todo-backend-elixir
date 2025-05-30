@@ -5,6 +5,7 @@ defmodule TodoBackend.TodoController do
 
   def index(conn) do
     todos = TodoBackend.Repo.all(Todo)
+
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(todos))

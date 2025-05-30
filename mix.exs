@@ -23,7 +23,7 @@ defmodule TodoBackend.MixProject do
   defp deps do
     [
       {:plug, "~> 1.14"},
-      {:cowboy, "~> 2.10"},
+      {:plug_cowboy, "~> 2.6"},
       {:jason, "~> 1.4"},
       {:ecto, "~> 3.10"},
       {:ecto_sql, "~> 3.10"},

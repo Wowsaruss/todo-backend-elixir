@@ -7,9 +7,11 @@ defmodule TodoBackend.Application do
 
   @impl true
   def start(_type, _args) do
+    port = Application.get_env(:todo_backend, :http_port, 5000)
+
     children = [
-      # Starts a worker by calling: TodoBackend.Worker.start_link(arg)
-      # {TodoBackend.Worker, arg}
+      TodoBackend.Repo,
+      {Plug.Cowboy, scheme: :http, plug: TodoBackend.Router, options: [port: port]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

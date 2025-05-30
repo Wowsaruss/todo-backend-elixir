@@ -1,18 +1,47 @@
 defmodule TodoBackend do
   @moduledoc """
-  Documentation for `TodoBackend`.
+  TodoBackend is a simple REST API for managing todo items.
   """
+
+  alias TodoBackend.Todo
+  alias TodoBackend.Repo
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> TodoBackend.hello()
-      :world
-
+  Lists all todos.
   """
-  def hello do
-    :world
+  def list_todos do
+    Repo.all(Todo)
+  end
+
+  @doc """
+  Gets a single todo by ID.
+  """
+  def get_todo!(id) do
+    Repo.get!(Todo, id)
+  end
+
+  @doc """
+  Creates a todo.
+  """
+  def create_todo(attrs \\ %{}) do
+    %Todo{}
+    |> Todo.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a todo.
+  """
+  def update_todo(%Todo{} = todo, attrs) do
+    todo
+    |> Todo.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a todo.
+  """
+  def delete_todo(%Todo{} = todo) do
+    Repo.delete(todo)
   end
 end

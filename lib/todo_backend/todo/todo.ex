@@ -2,11 +2,10 @@ defmodule TodoBackend.Todo do
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "todos" do
+  @derive {Jason.Encoder, only: [:id, :title, :completed]}
+  schema "Todo" do
     field :title, :string
     field :completed, :boolean, default: false
-
-    timestamps()
   end
 
   def changeset(todo, attrs) do
@@ -14,4 +13,4 @@ defmodule TodoBackend.Todo do
     |> cast(attrs, [:title, :completed])
     |> validate_required([:title])
   end
-end 
+end
