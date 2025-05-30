@@ -1,5 +1,9 @@
 .PHONY: setup compile test clean db.create db.migrate server
 
+# Load environment variables
+include .env
+export
+
 # Setup the project
 setup:
 	mix deps.get
@@ -9,7 +13,7 @@ setup:
 compile:
 	mix compile
 
-run:
+iex:
 	mix deps.get
 	mix deps.compile
 	iex
@@ -37,6 +41,8 @@ db.reset:
 
 # Start the server
 server:
+	mix deps.get
+	mix deps.compile
 	mix run --no-halt
 
 # Format code
