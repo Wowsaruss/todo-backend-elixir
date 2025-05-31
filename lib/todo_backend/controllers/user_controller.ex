@@ -1,10 +1,10 @@
-defmodule TodoBackend.TodoController do
+defmodule TodoBackend.UserController do
   import Plug.Conn
 
-  alias TodoBackend.Todo
+  alias TodoBackend.User
 
   def index(conn) do
-    todos = TodoBackend.Repo.all(Todo)
+    todos = TodoBackend.Repo.all(User)
 
     conn
     |> put_resp_content_type("application/json")
@@ -12,11 +12,11 @@ defmodule TodoBackend.TodoController do
   end
 
   def show(conn, id) do
-    case TodoBackend.Repo.get(Todo, id) do
+    case TodoBackend.Repo.get(User, id) do
       nil ->
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(404, Jason.encode!(%{error: "Todo not found"}))
+        |> send_resp(404, Jason.encode!(%{error: "User not found"}))
       todo ->
         conn
         |> put_resp_content_type("application/json")
@@ -25,12 +25,12 @@ defmodule TodoBackend.TodoController do
   end
 
   def create(conn, params) do
-    changeset = Todo.changeset(%Todo{}, params)
+    changeset = User.changeset(%User{}, params)
     case TodoBackend.Repo.insert(changeset) do
-      {:ok, todo} ->
+      {:ok, user} ->
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(201, Jason.encode!(todo))
+        |> send_resp(201, Jason.encode!(user))
       {:error, changeset} ->
         conn
         |> put_resp_content_type("application/json")

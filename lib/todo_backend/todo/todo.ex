@@ -3,7 +3,7 @@ defmodule TodoBackend.Todo do
   import Ecto.Changeset
 
   @derive {Jason.Encoder, only: [:id, :title, :completed]}
-  schema "Todo" do
+  schema "todos" do
     field :title, :string
     field :completed, :boolean, default: false
   end
