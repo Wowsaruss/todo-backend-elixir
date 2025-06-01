@@ -28,7 +28,9 @@ defmodule TodoBackend.MixProject do
       {:ecto, "~> 3.10"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
-      {:dotenv, "~> 3.0"}
+      {:dotenv, "~> 3.0"},
+      {:bcrypt_elixir, "~> 3.0"},
+      {:joken, "~> 2.5"}
     ]
   end
 end

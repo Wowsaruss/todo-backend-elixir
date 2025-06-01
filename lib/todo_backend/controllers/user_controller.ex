@@ -25,12 +25,12 @@ defmodule TodoBackend.UserController do
   end
 
   def create(conn, params) do
-    changeset = User.changeset(%User{}, params)
-    case TodoBackend.Repo.insert(changeset) do
+    case TodoBackend.create_user(params) do
       {:ok, user} ->
+        token = TodoBackend.Auth.generate_token(user)
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(201, Jason.encode!(user))
+        |> send_resp(201, Jason.encode!(%{user: user, token: token}))
       {:error, changeset} ->
         conn
         |> put_resp_content_type("application/json")
