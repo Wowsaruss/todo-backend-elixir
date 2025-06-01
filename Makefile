@@ -41,8 +41,6 @@ db.reset:
 
 # Start the server
 server:
-	mix deps.get
-	mix deps.compile
 	mix run --no-halt
 
 # Format code
