@@ -1,6 +1,7 @@
 defmodule TodoBackend.UserController do
   import Plug.Conn
 
+  alias TodoBackend
   alias TodoBackend.User.Users
 
   def index(conn) do
@@ -34,15 +35,7 @@ defmodule TodoBackend.UserController do
       {:error, changeset} ->
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(400, Jason.encode!(%{errors: changeset_errors(changeset)}))
+        |> send_resp(400, Jason.encode!(%{errors: TodoBackend.changeset_errors(changeset)}))
     end
-  end
-
-  defp changeset_errors(changeset) do
-    Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
-      Enum.reduce(opts, msg, fn {key, value}, acc ->
-        String.replace(acc, "%{#{key}}", to_string(value))
-      end)
-    end)
   end
 end
