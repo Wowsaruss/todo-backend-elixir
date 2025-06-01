@@ -1,10 +1,10 @@
 defmodule TodoBackend.TodoController do
   import Plug.Conn
 
-  alias TodoBackend.Todo
+  alias TodoBackend.Todo.Todos
 
   def index(conn) do
-    todos = TodoBackend.Repo.all(Todo)
+    todos = Todos.list_todos()
 
     conn
     |> put_resp_content_type("application/json")
@@ -12,7 +12,9 @@ defmodule TodoBackend.TodoController do
   end
 
   def show(conn, id) do
-    case TodoBackend.Repo.get(Todo, id) do
+    id
+    |> Todos.get_todo!()
+    |> case do
       nil ->
         conn
         |> put_resp_content_type("application/json")
@@ -25,8 +27,9 @@ defmodule TodoBackend.TodoController do
   end
 
   def create(conn, params) do
-    changeset = Todo.changeset(%Todo{}, params)
-    case TodoBackend.Repo.insert(changeset) do
+    params
+    |> Todos.create_todo()
+    |> case do
       {:ok, todo} ->
         conn
         |> put_resp_content_type("application/json")
