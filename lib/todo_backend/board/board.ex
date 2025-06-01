@@ -17,6 +17,7 @@ defmodule TodoBackend.Board do
     board
     |> cast(attrs, [:name, :description, :user_id])
     |> validate_required([:name, :user_id])
+    |> unique_constraint([:name, :user_id], name: :boards_name_user_id_index)
     |> foreign_key_constraint(:user_id)
   end
 end
