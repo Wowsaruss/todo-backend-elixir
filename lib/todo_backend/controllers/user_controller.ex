@@ -1,10 +1,10 @@
 defmodule TodoBackend.UserController do
   import Plug.Conn
 
-  alias TodoBackend.User
+  alias TodoBackend.User.Users
 
   def index(conn) do
-    todos = TodoBackend.Repo.all(User)
+    todos = Users.get_users()
 
     conn
     |> put_resp_content_type("application/json")
@@ -12,7 +12,7 @@ defmodule TodoBackend.UserController do
   end
 
   def show(conn, id) do
-    case TodoBackend.Repo.get(User, id) do
+    case Users.get_user!(id) do
       nil ->
         conn
         |> put_resp_content_type("application/json")
@@ -25,7 +25,7 @@ defmodule TodoBackend.UserController do
   end
 
   def create(conn, params) do
-    case TodoBackend.create_user(params) do
+    case Users.create_user(params) do
       {:ok, user} ->
         token = TodoBackend.Auth.generate_token(user)
         conn
