@@ -1,6 +1,8 @@
-defmodule TodoBackend.Todo.Todos do
-  alias TodoBackend.Todo
-  alias TodoBackend.Repo
+defmodule TodoBackend.Todos do
+  alias TodoBackend.{
+    Repo,
+    Todos.Todo
+  }
 
   @doc """
   Lists all todos.

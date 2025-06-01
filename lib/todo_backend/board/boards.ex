@@ -1,7 +1,7 @@
-defmodule TodoBackend.Board.Boards do
+defmodule TodoBackend.Boards do
 
   alias TodoBackend.Repo
-  alias TodoBackend.Board
+  alias TodoBackend.Boards.Board
 
   @doc """
   Lists all boards.

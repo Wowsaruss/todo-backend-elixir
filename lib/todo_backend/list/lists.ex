@@ -1,7 +1,7 @@
-defmodule TodoBackend.List.Lists do
+defmodule TodoBackend.Lists do
 
   alias TodoBackend.Repo
-  alias TodoBackend.List
+  alias TodoBackend.Lists.List
 
   @doc """
   Lists all lists.

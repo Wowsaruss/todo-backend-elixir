@@ -2,8 +2,8 @@ defmodule TodoBackend.ListController do
   import Plug.Conn
 
   alias TodoBackend
-  alias TodoBackend.List
-  alias TodoBackend.List.Lists
+  alias TodoBackend.Lists
+  alias TodoBackend.Lists.List
   alias TodoBackend.Repo
 
   def index(conn) do

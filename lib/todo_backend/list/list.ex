@@ -1,4 +1,4 @@
-defmodule TodoBackend.List do
+defmodule TodoBackend.Lists.List do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -7,8 +7,8 @@ defmodule TodoBackend.List do
     field :title, :string
     field :position, :integer
 
-    belongs_to :board, TodoBackend.Board
-    has_many :todos, TodoBackend.Todo
+    belongs_to :board, TodoBackend.Boards.Board
+    has_many :todos, TodoBackend.Todos.Todo
 
     timestamps(type: :utc_datetime)
   end

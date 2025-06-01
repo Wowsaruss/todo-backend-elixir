@@ -1,5 +1,5 @@
-defmodule TodoBackend.User.Users do
-  alias TodoBackend.User
+defmodule TodoBackend.Users do
+  alias TodoBackend.Users.User
   alias TodoBackend.Repo
 
   @doc """

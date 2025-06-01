@@ -2,8 +2,8 @@ defmodule TodoBackend.BoardController do
   import Plug.Conn
 
   alias TodoBackend
-  alias TodoBackend.Board
-  alias TodoBackend.Board.Boards
+  alias TodoBackend.Boards
+  alias TodoBackend.Boards.Board
   alias TodoBackend.Repo
 
   def index(conn) do

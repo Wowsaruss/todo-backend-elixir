@@ -2,9 +2,11 @@ defmodule TodoBackend.TodoController do
   import Plug.Conn
 
   alias TodoBackend
-  alias TodoBackend.Todo
-  alias TodoBackend.Todo.Todos
-  alias TodoBackend.Repo
+  alias TodoBackend.{
+    Repo,
+    Todos,
+    Todos.Todo
+  }
 
   def index(conn) do
     todos = Todos.list_todos()

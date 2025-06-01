@@ -2,7 +2,7 @@ defmodule TodoBackend.UserController do
   import Plug.Conn
 
   alias TodoBackend
-  alias TodoBackend.User.Users
+  alias TodoBackend.Users
 
   def index(conn) do
     todos = Users.get_users()

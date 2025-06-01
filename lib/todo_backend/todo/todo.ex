@@ -1,4 +1,4 @@
-defmodule TodoBackend.Todo do
+defmodule TodoBackend.Todos.Todo do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -11,8 +11,8 @@ defmodule TodoBackend.Todo do
     field :due_date, :utc_datetime
     field :position, :integer
 
-    belongs_to :user, TodoBackend.User
-    belongs_to :list, TodoBackend.List
+    belongs_to :user, TodoBackend.Users.User
+    belongs_to :list, TodoBackend.Lists.List
 
     timestamps(type: :utc_datetime)
   end

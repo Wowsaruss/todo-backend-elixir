@@ -1,4 +1,4 @@
-defmodule TodoBackend.User do
+defmodule TodoBackend.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
   alias Bcrypt
